@@ -1,0 +1,12 @@
+original.mp4
+tts/
+test/
+gomme/
+frames/
+boites.json
+mots.json
+voix_*.wav
+*.mp3
+*.log
+titre.json
+rendu.lock
