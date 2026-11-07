@@ -15,7 +15,7 @@ F_SEMI = "/usr/share/fonts/opentype/inter/Inter-SemiBold.otf"
 NB = int(cv2.VideoCapture(f"{W}/original.mp4").get(cv2.CAP_PROP_FRAME_COUNT))
 FIN_VIDEO, CARTE = NB / FPS, 3.0
 BANDE = (760, 1100)            # lignes de l'image où l'on reconstruit le fond
-DOSSIER_GOMME = f"{W}/gomme"
+DOSSIER_GOMME = f"{W}/gomme_precis"
 logo = Image.open(f"{W}/marque/logo.png").convert("RGBA")
 def police(p, t): return ImageFont.truetype(p, t)
 def rect_arrondi(size, box, r, fill, ss=3):
@@ -32,13 +32,7 @@ def masques():
     filt = [[np.array(p) for p in b if ok(p)] for b in boites]
     out = []
     for i in range(len(filt)):
-        m = np.zeros((HAUT, LARG), np.uint8)
-        for j in (i - 1, i, i + 1):          # union avec les images voisines (fondus, apparitions)
-            if 0 <= j < len(filt):
-                for p in filt[j]:
-                    x0, y0 = p.min(0); x1, y1 = p.max(0)
-                    cv2.rectangle(m, (int(x0) - 7, int(y0) - 7), (int(x1) + 7, int(y1) + 7), 255, -1)
-        out.append(m)
+        out.append([p for j in (i - 1, i, i + 1) if 0 <= j < len(filt) for p in filt[j]])
     return out
 
 def gommer_tout(debut, fin):
@@ -50,7 +44,9 @@ def gommer_tout(debut, fin):
         if not ok: break
         p = f"{DOSSIER_GOMME}/{i:05d}.png"
         if os.path.exists(p): continue
-        r = inpaint1(f, ms[i]) if ms[i].any() else f
+        from masque_fin import masque_lettres
+        mk = masque_lettres(f, ms[i]) if ms[i] else None
+        r = inpaint1(f, mk) if mk is not None and mk.any() else f
         cv2.imwrite(p, r[BANDE[0]:BANDE[1]])
         if i % 50 == 0: print(f"  gomme {i}/{fin}", flush=True)
 
@@ -69,7 +65,7 @@ def inpaint1(img, m):
         r = lama(MODELE).run(None, {"image": im.transpose(2, 0, 1)[None], "mask": (mm > 0).astype(np.float32)[None, None]})[0][0].transpose(1, 2, 0)
         if r.max() <= 1.5: r = r * 255
         r = cv2.cvtColor(np.clip(r, 0, 255).astype(np.uint8), cv2.COLOR_RGB2BGR).astype(np.float32)
-        a = cv2.GaussianBlur((mm > 0).astype(np.float32), (0, 0), 1.5)[..., None]
+        a = cv2.GaussianBlur((mm > 0).astype(np.float32), (0, 0), 0.8)[..., None]
         z = out[y0:y0 + 512, x0:x0 + 512].astype(np.float32)
         out[y0:y0 + 512, x0:x0 + 512] = (r * a + z * (1 - a)).astype(np.uint8)
     return out
@@ -207,7 +203,7 @@ if MODE == "apercu":
         if i < NB:
             cap.set(cv2.CAP_PROP_POS_FRAMES, i); ok, f = cap.read()
             if not os.path.exists(f"{DOSSIER_GOMME}/{i:05d}.png"):
-                ms = masques(); g = inpaint1(f, ms[i]) if ms[i].any() else f
+                ms = masques(); from masque_fin import masque_lettres; mk = masque_lettres(f, ms[i]) if ms[i] else None; g = inpaint1(f, mk) if mk is not None and mk.any() else f
                 os.makedirs(DOSSIER_GOMME, exist_ok=True); cv2.imwrite(f"{DOSSIER_GOMME}/{i:05d}.png", g[BANDE[0]:BANDE[1]])
             imgs.append(habiller(f, i, t))
         else:
@@ -217,7 +213,7 @@ if MODE == "apercu":
     print("blocs:", " | ".join(" ".join(b["ws"]) for b in blocs)); sys.exit()
 
 enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{LARG}x{HAUT}", "-r", str(FPS), "-i", "-",
-                        "-i", f"{W}/voix_fr.wav", "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+                        "-i", f"{W}/voix_fr.wav", "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "14",
                         "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", "-shortest", f"{W}/VUZENA_camera5_FR.mp4"], stdin=subprocess.PIPE)
 n, brut, dern = 0, None, None
 while True:
