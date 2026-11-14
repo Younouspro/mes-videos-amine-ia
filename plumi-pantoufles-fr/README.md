@@ -5,6 +5,7 @@ Adaptation française d'une pub vidéo pantoufles repérée dans la bibliothèqu
 - `plumi_pantoufles_fr.mp4` : vidéo finale 720x1280 (9:16), 21 s
 - `plumi_pantoufles_fr_fetes.mp4` : même vidéo + panneau de fin « Spécial fêtes : 1 acheté = 1 offert » (25,5 s)
 - `plumi_pantoufles_fr_black_friday.mp4` : panneau de fin « Black Friday : 1 acheté = 1 offert » avec le vrai logo Plumi (25,5 s)
+- `plumi_pantoufles_fr_pre_black_friday.mp4` : même panneau en version « Pré-Black Friday » (25,7 s)
 - `sous-titres_fr.srt` : sous-titres français (au cas où tu veux les modifier dans CapCut)
 
 ## Ce qui a changé
@@ -26,6 +27,9 @@ Voix off : « Et pour les fêtes, chez Plumi : une paire achetée, une paire off
 Carte noire bordée de vert sauge : « BLACK FRIDAY — OFFRE EXCLUSIVE — 1 ACHETÉ = 1 OFFERT — Sur toutes les pantoufles, offre limitée ».
 En dessous : le vrai logo Plumi (récupéré dans les fichiers Shopify, `plumi_logo.png`) sur une plaque crème, et le bouton « J'en profite → ».
 Voix off : « Et pour le Black Friday, chez Plumi : une paire achetée, une paire offerte ! »
+
+## Version Pré-Black Friday
+Identique à la version Black Friday, avec le titre « PRÉ-BLACK FRIDAY » et la voix off : « Et pour le pré-Black Friday, chez Plumi : une paire achetée, une paire offerte. »
 
 ## Texte de la pub (Facebook / Instagram)
 **Texte principal :**
