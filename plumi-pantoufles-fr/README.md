@@ -3,6 +3,7 @@
 Adaptation française d'une pub vidéo pantoufles repérée dans la bibliothèque publicitaire Meta (pub en espagnol).
 
 - `plumi_pantoufles_fr.mp4` : vidéo finale 720x1280 (9:16), 21 s
+- `plumi_pantoufles_fr_fetes.mp4` : même vidéo + panneau de fin « Spécial fêtes : 1 acheté = 1 offert » (25,5 s)
 - `sous-titres_fr.srt` : sous-titres français (au cas où tu veux les modifier dans CapCut)
 
 ## Ce qui a changé
@@ -15,6 +16,10 @@ J'en avais marre d'avoir les pieds gelés. J'ai tout testé : chaussettes, plaid
 Jusqu'à ce que j'enfile mes Plumi. Dedans, elles sont doublées de laine toute douce,
 et la semelle épaisse bloque le froid du sol. Tu les mets et en deux secondes, t'as les pieds tout chauds.
 Franchement, elles m'ont sauvée, parce que je déteste le froid.
+
+## Panneau de fin (version fêtes)
+Panneau rouge et doré sur fond flouté : « 🎄 SPÉCIAL FÊTES 🎁 — 1 ACHETÉ = 1 OFFERT — Sur toutes les pantoufles Plumi, offre limitée », logo texte Plumi et bouton « J'en profite → ».
+Voix off : « Et pour les fêtes, chez Plumi : une paire achetée, une paire offerte ! »
 
 ## Texte de la pub (Facebook / Instagram)
 **Texte principal :**
