@@ -20,3 +20,7 @@ Prépare-toi pour l'hiver, en commençant par les pieds.
 **Titre :** Les pantoufles n°1 en France · **Description :** +50 000 clientes satisfaites · **Bouton :** Acheter
 
 > ⚠️ Les chaussons de la vidéo portent encore les petites étiquettes Plufeet.
+
+## Versions Pré-Black Friday (`*_pre_black_friday.mp4`)
+Même vidéo + le panneau de fin de la 1re vidéo (5 s) : « PRÉ-BLACK FRIDAY — OFFRE EXCLUSIVE — 1 ACHETÉ = 1 OFFERT — Sur toutes les pantoufles, offre limitée », logo Plumi, bouton « J'en profite → ».
+Voix off : « Et pour le pré-Black Friday, chez Plumi : une paire achetée, une paire offerte. »
